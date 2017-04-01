@@ -8,4 +8,13 @@ def login(request):
 
 @csrf_exempt
 def appointments(request,date):
-	
+	pass
+
+def new_appointment(request,date):
+	pass
+
+def cancel_appointment(request):
+	pass
+
+def doctor_details(request,id):
+	pass

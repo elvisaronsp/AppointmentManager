@@ -5,6 +5,16 @@ from django.http import JsonResponse
 def login(request):
 	pass
 
+def update_appointments(request):
+	
+	p_id = request.POST.get('pid')
+	d_id = request.POST.get('did')
+	patient = Patient.pats.get(id=p_id)
+	doctor = Doctor.docs.get(id=d_id)
+	date = request.POST.get('date')
+	appt = Appointment.apps.get(doctor=doctor,patient=patient)
+	appt.update(date=date,status=True)
+
 def appointments(request):
 
 	p_id = request.POST.get('pid')

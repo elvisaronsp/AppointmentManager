@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.contrib.auth.models import User
 
 class Doctor(models.Model):
 	
@@ -7,6 +8,8 @@ class Doctor(models.Model):
 			('M','Male'),
 			('F','Female')
 		)
+
+	user = models.OneToOneField(User,on_delete=models.CASCADE)
 	docs = models.Manager()
 	name = models.CharField(max_length = 200)
 	age = models.IntegerField()
@@ -20,6 +23,7 @@ class Patient(models.Model):
 			('M','Male'),
 			('F','Female')
 		)
+	user = models.OneToOneField(User,on_delete=models.CASCADE)
 	pats = models.Manager()
 	name = models.CharField(max_length = 200)
 	age = models.IntegerField()
@@ -33,4 +37,4 @@ class Appointment(models.Model):
 	apps = models.Manager()
 	patient = models.ForeignKey(Patient,on_delete = models.CASCADE)
 	status = models.BooleanField()
-	cancelled_by = models.CharField(max_length=20)
+	cancelled_by = models.CharField(max_length=20,default='Not Cancelled')
